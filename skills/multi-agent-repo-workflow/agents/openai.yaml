@@ -1,0 +1,4 @@
+interface:
+  display_name: "Multi-Agent Repo Workflow"
+  short_description: "Bootstrap safe multi-agent repository workflows"
+  default_prompt: "Use $multi-agent-repo-workflow to set up an adaptive, repository-backed collaboration workflow for this project."

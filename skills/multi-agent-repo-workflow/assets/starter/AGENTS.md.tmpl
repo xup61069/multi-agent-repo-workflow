@@ -1,0 +1,40 @@
+<!-- multi-agent-repo-workflow:start -->
+# {{PROJECT_NAME}} AI working agreement
+
+Repository files are durable project truth. Chat history and model memory may help discovery but cannot override accepted specifications, source, tests, evidence, or an active handoff.
+
+Read this file, `docs/ai/START_HERE.md`, and the active task context before editing.
+
+## Policy tiers
+
+### Non-negotiable
+
+- Preserve secrets, personal data, licenses, authorization boundaries, and truthful evidence claims.
+- Do not perform destructive, costly, external, privileged, or machine-changing actions unless the user explicitly authorized that action.
+- Stop on contradictory authoritative documents or overlapping active write ownership.
+- Add project-specific safety and compatibility invariants here only when a concrete failure justifies absolute language.
+
+### Product and workflow defaults
+
+- Workflow mode: `{{WORKFLOW_MODE}}`. {{MODE_POLICY}}
+- Task tracker: `{{TASK_TRACKER}}`. Default integration branch: `{{DEFAULT_BRANCH}}`.
+- Product architecture, supported platforms, naming, and review conventions are changeable defaults. Record how maintainers can replace them instead of presenting them as permanent prohibitions.
+- Maintainer-facing updates lead with product outcome, user impact, verification, and remaining gaps. Put branch, commit, review, and CI details in a short trailing audit note only when useful.
+
+### Validation
+
+- Run `git diff --check` for tracked edits.
+- Add the project's real always-run checks to `.agent-workflow/config.json`.
+- Add expensive build, integration, UI, hardware, packaging, and release checks only under the change scopes they actually validate.
+- A queued or running check is not a pass. A smoke test is evidence only for the layer and environment it exercised.
+
+## Parallel ownership
+
+- Read-only reconnaissance does not require a claim.
+- One writer owns one independently verifiable outcome and one exclusive `scope_globs` set.
+- `shared_paths` require a named integrator or merge order; they do not authorize simultaneous edits.
+- Isolate the checkout whenever another writer is active, the branch is occupied, or ownership is uncertain. In strict mode, isolate every writer.
+- Before takeover, the previous owner records a reproducible checkpoint and stops writing; the next owner rereads remote state and the handoff.
+
+Detailed routing is in `docs/ai/MULTI_AGENT.md`.
+<!-- multi-agent-repo-workflow:end -->

@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Multi-agent task handoff",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "issue",
+    "branch",
+    "target_branch",
+    "base_commit",
+    "owner",
+    "role",
+    "status",
+    "scope_globs",
+    "shared_paths",
+    "depends_on",
+    "validation",
+    "next_safe_action"
+  ],
+  "properties": {
+    "schema_version": {"const": 1},
+    "issue": {"type": "integer", "minimum": 0},
+    "branch": {"type": "string", "minLength": 1},
+    "target_branch": {"type": "string", "minLength": 1},
+    "base_commit": {"type": "string", "minLength": 7},
+    "owner": {"type": "string", "minLength": 1},
+    "role": {"type": "string", "minLength": 1},
+    "status": {"enum": ["draft", "claimed", "in_review", "done"]},
+    "scope_globs": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "shared_paths": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "depends_on": {"type": "array", "items": {"type": "integer", "minimum": 1}},
+    "validation": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "next_safe_action": {"type": "string", "minLength": 1}
+  }
+}

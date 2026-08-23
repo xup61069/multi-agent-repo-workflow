@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "project_name": "{{PROJECT_NAME}}",
+  "mode": "{{WORKFLOW_MODE}}",
+  "task_tracker": "{{TASK_TRACKER}}",
+  "default_branch": "{{DEFAULT_BRANCH}}",
+  "branch_pattern": "agent/{issue}-{slug}",
+  "handoff_marker": "agent-workflow:handoff-v1",
+  "active_statuses": ["claimed", "in_review"],
+  "reporting_order": [
+    "product_outcome",
+    "user_impact",
+    "verification",
+    "remaining_gaps",
+    "development_audit_when_relevant"
+  ],
+  "validation": {
+    "always_run": ["git diff --check"],
+    "conditional_gates": []
+  },
+  "shared_integration_paths": []
+}

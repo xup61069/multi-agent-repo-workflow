@@ -1,0 +1,48 @@
+name: Agent task slice
+description: Define one independently verifiable work slice for assignment.
+title: "[Agent Task] "
+body:
+  - type: textarea
+    id: outcome
+    attributes:
+      label: Outcome and acceptance
+      description: Describe the product result and how it will be verified.
+    validations:
+      required: true
+  - type: textarea
+    id: handoff
+    attributes:
+      label: Machine-readable handoff
+      description: Replace the placeholders when one owner claims the task.
+      render: markdown
+      value: |
+        <!-- agent-workflow:handoff-v1
+        {
+          "schema_version": 1,
+          "issue": 0,
+          "branch": "agent/0-short-slug",
+          "target_branch": "{{DEFAULT_BRANCH}}",
+          "base_commit": "replace-with-full-commit",
+          "owner": "unassigned",
+          "role": "writer",
+          "status": "draft",
+          "scope_globs": ["replace/with/owned/path/**"],
+          "shared_paths": [],
+          "depends_on": [],
+          "validation": ["replace with a real project command"],
+          "next_safe_action": "Assign one owner, confirm no overlap, and choose workspace isolation."
+        }
+        -->
+    validations:
+      required: true
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Assignment checks
+      options:
+        - label: Active tasks and semantic contract ownership were checked for overlap.
+          required: true
+        - label: Shared paths have one integrator or an explicit merge order.
+          required: true
+        - label: The validation plan proves this outcome without overstating its environment or layer.
+          required: true

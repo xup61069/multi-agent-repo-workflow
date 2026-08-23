@@ -1,0 +1,26 @@
+name: Workflow proposal
+description: Propose a reusable improvement backed by a concrete coordination failure.
+title: "[Proposal] "
+labels: [enhancement]
+body:
+  - type: textarea
+    id: failure
+    attributes:
+      label: Failure or adoption problem
+      description: What happened, and why existing behavior was insufficient.
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: Proposed change and boundary
+      description: Explain which mode, template, reference, or script should change and what should remain optional.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Verification
+      description: Describe a behavioral test or observable result.
+    validations:
+      required: true

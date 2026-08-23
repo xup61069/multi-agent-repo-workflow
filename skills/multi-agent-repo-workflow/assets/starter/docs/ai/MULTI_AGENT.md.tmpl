@@ -1,0 +1,34 @@
+# {{PROJECT_NAME}} multi-agent collaboration
+
+Current mode: `{{WORKFLOW_MODE}}`. Task tracker: `{{TASK_TRACKER}}`.
+
+## Mode behavior
+
+{{MODE_POLICY}}
+
+## Strict concurrent slice
+
+When strict ownership is active, each writer has one task, one named outcome, one branch, one handoff block, one exclusive write scope, one isolated checkout, and one review surface after the first reproducible checkpoint.
+
+The handoff records:
+
+- owner, role, status, branch, target branch, and base commit;
+- `scope_globs`, `shared_paths`, and `depends_on`;
+- relevant validation commands and evidence boundaries;
+- one `next_safe_action`.
+
+## Scope and shared paths
+
+`scope_globs` are exclusive write intent. `shared_paths` require an integrator or an ordered edit; they do not make overlap safe. Directory ownership is only a routing hint—semantic contract overlap can cross directories.
+
+## Handoff
+
+The current writer creates a reproducible checkpoint, updates validation and limitations, records one next safe action, and stops writing. The next writer checks remote state, branch occupancy, and the handoff before editing.
+
+## Stop conditions
+
+Stop overlapping writes for claim overlap, unassigned scope expansion, contradictory authority, uncertain branch ownership, missing external authorization, or a destructive/costly action. Report the smallest maintainer decision needed.
+
+## Reporting
+
+Tell the maintainer what capability changed, what users notice, what was verified, and what remains. Mention Git mechanics only as a short audit note when they affect trust or next action.
