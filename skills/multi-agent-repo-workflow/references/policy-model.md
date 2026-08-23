@@ -1,56 +1,56 @@
-# Policy model
+# 政策模型
 
-Use three tiers so agents can distinguish real invariants from defaults and validation.
+使用三個層級，讓代理能區分真正的不變量、預設值和驗證。
 
-## 1. Non-negotiable invariants
+## 1. 不可妥協的不變量
 
-Reserve absolute language for constraints whose violation creates a concrete failure:
+絕對語言只留給違反時造成具體失敗的限制：
 
-- safety or real-time execution properties;
-- law, license, privacy, secrets, or restricted data;
-- destructive actions and external authorization;
-- public compatibility promises that cannot silently break;
-- truthful evidence boundaries.
+- 安全或即時執行屬性；
+- 法律、授權、隱私、機密或受限資料；
+- 破壞性操作和外部授權；
+- 不能靜默破壞的公開相容性承諾；
+- 誠實的證據邊界。
 
-For every proposed invariant, ask: What specific failure does this prevent? Who can change it? What evidence proves it still applies? If those answers are unclear, it is probably not an invariant.
+對每條提議的不變量問：它防止什麼具體失敗？誰能修改它？什麼證據證明它仍然適用？如果這些答案不清楚，它可能不是不變量。
 
-## 2. Product and workflow defaults
+## 2. 產品和工作流程預設值
 
-Record current choices that may evolve through an accepted decision:
+記錄可透過被接受的決定演變的當前選擇：
 
-- supported platform, language, framework, or architecture;
-- preferred branch and review model;
-- naming conventions and repository layout;
-- recommended workspace isolation;
-- documentation ownership.
+- 支援的平台、語言、框架或架構；
+- 偏好的分支和審查模型；
+- 命名慣例和儲存庫布局；
+- 建議的工作區隔離方式；
+- 文件擁有權。
 
-State how a default changes, such as a new ADR, accepted specification, maintainer decision, or migration plan. Avoid wording that turns today's architecture into a permanent prohibition.
+說明預設值如何改變，例如新的 ADR、被接受的規格、維護者決定或遷移計畫。避免把今天的架構寫成永久禁止。
 
-## 3. Scope-triggered validation
+## 3. 範圍觸發的驗證
 
-Keep a very small always-run set, then map additional checks to affected risk:
+保持一組很小的必跑集合，然後將額外檢查映射到受影響的風險：
 
-| Change | Typical evidence |
+| 變更類型 | 典型證據 |
 | --- | --- |
-| Any tracked edit | format/diff hygiene and repository policy check |
-| Public API or schema | contract tests and compatibility evidence |
-| Native or performance-critical code | focused unit/integration tests and relevant benchmarks |
-| UI behavior | interaction, accessibility, and rendered-state checks |
-| Build or toolchain | clean build and reproducibility checks |
-| Packaging or release | artifact, signature, provenance, and installer checks |
-| Live system behavior | explicit opt-in probe with privacy and machine-state boundaries |
+| 任何受追蹤編輯 | 格式/diff 衛生檢查和儲存庫政策檢查 |
+| 公開 API 或結構 | 合約測試和相容性證據 |
+| 原生或效能關鍵程式碼 | 聚焦的單元/整合測試和相關基準 |
+| UI 行為 | 互動、無障礙和渲染狀態檢查 |
+| 建置或工具鏈 | 乾淨建置和可重現性檢查 |
+| 打包或發布 | 產物、簽署、來源和安裝程式檢查 |
+| 線上系統行為 | 明確選用的探測，含隱私和機器狀態邊界 |
 
-Do not run expensive environment discovery or release-only checks for a documentation edit merely to satisfy ceremony. Conversely, do not use a cheap unit test to claim a hardware, production, accessibility, or release property.
+不要為了滿足繁文縟節而為文件編輯執行昂貴的環境探索或發布專用檢查。反過來，也不要用一個便宜的單元測試宣稱硬體、生產、無障礙或發布屬性已通過驗證。
 
-## Compression test
+## 壓縮測試
 
-Remove or rewrite a rule when it:
+以下情況應刪除或改寫規則：
 
-- repeats a higher-priority platform or security policy;
-- describes a one-time incident without a reusable decision rule;
-- prescribes exact commands where several safe approaches exist;
-- requires unavailable infrastructure before ordinary development can begin;
-- forces every task through a gate unrelated to its changed risk;
-- makes reports longer without changing a decision.
+- 重複更高優先級的平台或安全政策；
+- 描述一次性事件而沒有可重複使用的決策規則；
+- 在多種安全方法都可行的地方規定精確命令；
+- 在一般開發可以開始前要求不可用的基礎設施；
+- 迫使每個任務通過與其變更風險無關的關卡；
+- 使報告更長但不影響決策。
 
-Prefer one durable rule plus a deterministic check over several paragraphs of reminders.
+偏好用一條持久規則加一個確定性檢查，而不是幾段提醒文字。

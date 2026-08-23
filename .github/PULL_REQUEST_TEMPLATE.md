@@ -1,15 +1,15 @@
-## Outcome
+## 產品結果
 
-What reusable workflow behavior improves, and which concrete failure does it prevent?
+這次改善了哪一項可重複使用的工作流程行為？它能避免哪個具體問題？
 
-## Scope and tradeoff
+## 範圍與取捨
 
-Why does this belong in the Skill, a reference, a template, or a deterministic script? What remains optional?
+為什麼這項變更應放在 Skill、參考文件、模板或確定性腳本中？哪些部分仍應保持選用？
 
-## Verification
+## 驗證方式
 
-List behavioral tests and observable results.
+列出行為測試與可觀察的結果。
 
-## Remaining limitations
+## 剩餘限制
 
-State unsupported tools, modes, or edge cases without turning them into universal restrictions.
+說明尚未支援的工具、模式或邊界情況，不要把它們寫成通用限制。

@@ -1,28 +1,28 @@
-# {{PROJECT_NAME}} AI start here
+# {{PROJECT_NAME}} AI 起始指南
 
-## Read first
+## 先讀
 
-1. Root `AGENTS.md`.
-2. This file and `docs/ai/MULTI_AGENT.md`.
-3. The accepted specification or architecture decision for the assigned outcome.
-4. The active task handoff, relevant source, tests, and reproducible evidence.
+1. 根目錄 `AGENTS.md`。
+2. 本檔案和 `docs/ai/MULTI_AGENT.md`。
+3. 指派成果所依據的已接受規格或架構決定。
+4. 目前有效的任務交接、相關原始碼、測試和可重現證據。
 
-Chat transcripts and model memory are discovery aids, not project authority.
+聊天記錄和模型記憶只能協助找資料，不能作為專案的最高依據。
 
-## Before editing
+## 編輯之前
 
-1. Inspect Git status, current branch, recent remote state, active tasks, and workspace occupancy.
-2. Confirm the named outcome, owner, target branch, exclusive write scope, shared paths, dependencies, validation, and next safe action.
-3. Apply the `{{WORKFLOW_MODE}}` mode policy. Do not add claim ceremony to read-only reconnaissance.
-4. Stop if scope or authoritative documents conflict.
+1. 檢查 Git 狀態、目前分支、最新遠端狀態、進行中的任務和工作區使用情況。
+2. 確認明確成果、負責人、目標分支、獨占寫入範圍、共用路徑、依賴、驗證和下一個安全操作。
+3. 套用 `{{WORKFLOW_MODE}}` 模式政策。唯讀檢查不需要額外的任務認領流程。
+4. 範圍或具優先效力的文件互相矛盾時停止。
 
-## While working
+## 工作期間
 
-- Keep checkpoints reproducible and do not leave the only usable state in chat or an uncommitted workspace.
-- Update specifications, tests, and evidence when public behavior or a contract changes.
-- Run the small always-run set plus only the conditional gates triggered by the change.
-- Explain progress in product language before repository mechanics.
+- 保持檢查點可重現；不要讓唯一可用的狀態只存在於聊天或未提交的工作區中。
+- 公開行為或合約改變時，更新規格、測試和證據。
+- 只執行小型必跑集合加上變更觸發的條件關卡。
+- 用產品語言解釋進度，再提儲存庫操作細節。
 
-## Before handoff
+## 交接之前
 
-Record what changed, what was actually verified, limitations, current owner and base, and exactly one next safe action. A new writer starts only after the previous writer has stopped and the recorded state has been read back.
+記錄變更內容、實際驗證結果、限制、目前負責人和基準，以及一項明確的下一步安全操作。確認前一個寫入者已停止，且記錄狀態已重新讀取後，新寫入者才能開始。

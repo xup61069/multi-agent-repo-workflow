@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "Multi-agent task handoff",
+  "title": "多代理任務交接",
   "type": "object",
   "additionalProperties": false,
   "required": [
@@ -27,9 +27,21 @@
     "owner": {"type": "string", "minLength": 1},
     "role": {"type": "string", "minLength": 1},
     "status": {"enum": ["draft", "claimed", "in_review", "done"]},
-    "scope_globs": {"type": "array", "items": {"type": "string", "minLength": 1}},
-    "shared_paths": {"type": "array", "items": {"type": "string", "minLength": 1}},
-    "depends_on": {"type": "array", "items": {"type": "integer", "minimum": 1}},
+    "scope_globs": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1},
+      "uniqueItems": true
+    },
+    "shared_paths": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1},
+      "uniqueItems": true
+    },
+    "depends_on": {
+      "type": "array",
+      "items": {"type": "integer", "minimum": 1},
+      "uniqueItems": true
+    },
     "validation": {"type": "array", "items": {"type": "string", "minLength": 1}},
     "next_safe_action": {"type": "string", "minLength": 1}
   }

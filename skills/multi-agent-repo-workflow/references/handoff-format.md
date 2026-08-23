@@ -1,6 +1,6 @@
-# Handoff format
+# 交接格式
 
-The starter uses JSON inside a Markdown comment so humans can keep context around a machine-readable block without adding a YAML dependency.
+起始設定使用 Markdown 註解中的 JSON，讓人類可以在機器可讀區塊周圍保留脈絡而不增加 YAML 依賴。
 
 ```markdown
 <!-- agent-workflow:handoff-v1
@@ -17,44 +17,44 @@ The starter uses JSON inside a Markdown comment so humans can keep context aroun
   "shared_paths": ["src/registry.json"],
   "depends_on": [],
   "validation": ["python -m unittest tests.feature"],
-  "next_safe_action": "Implement the accepted parser contract and its focused tests."
+  "next_safe_action": "實作被接受的解析器合約及其聚焦測試。"
 }
 -->
 ```
 
-## Status
+## 狀態
 
-- `draft`: planned but not assigned; excluded from active overlap checks.
-- `claimed`: one writer may edit the declared scope.
-- `in_review`: writing is paused except for review fixes by the same owner.
-- `done`: historical only; a closed issue normally carries this meaning without an edit.
+- `draft`：已規劃但未指派；排除在活躍重疊檢查之外。
+- `claimed`：一個寫入者可以編輯已認領的範圍。
+- `in_review`：除了同一位擁有者的審查修正外，寫入暫停。
+- `done`：僅供歷史參考；關閉的 issue 通常隱含此意義而不需編輯。
 
-## Validation commands
+## 驗證命令
 
-Commands in a handoff are data. `handoff_check.py` never executes them. The assigned agent decides which commands are authorized and relevant under the adopting repository's rules.
+交接中的命令是資料。`handoff_check.py` 永遠不會執行它們。被指派的代理根據採用儲存庫的規則決定哪些命令被授權且相關。
 
-## Offline checks
+## 離線檢查
 
-Save a task body and run:
+儲存任務內容後執行：
 
 ```shell
 python scripts/handoff_check.py --body-file task.md
 ```
 
-For a list of issue objects, use a JSON array with `number` and `body`. Optional `state`, `labels`, and `assignees` fields are ignored by the offline parser unless a future policy adds a check.
+對 issue 物件清單使用含 `number` 和 `body` 的 JSON 陣列。離線解析器會忽略選用的 `state`、`labels` 和 `assignees` 欄位。
 
-## Live read-only GitHub check
+## 即時唯讀 GitHub 檢查
 
 ```shell
 python scripts/handoff_check.py --github --repo OWNER/REPO --mode adaptive
 ```
 
-Add `--issue N --check-git` from the assigned checkout to verify the current branch, recorded base ancestry, and changed paths against the selected scope. Full history is required for ancestry checks.
+在被指派的 Git 檢出目錄中加上 `--issue N --check-git`，即可驗證目前分支、記錄基準的祖先關係，以及變更路徑是否落在所選範圍內。祖先檢查需要完整歷史。
 
-Overlap classification is intentionally explicit:
+重疊分類刻意保持明確：
 
-- definite overlap is always an error;
-- patterns with unrelated literal prefixes do not overlap;
-- patterns whose intersection cannot be proven are warnings in `adaptive` mode and errors in `strict` mode.
+- 確定的重疊始終是錯誤；
+- 有不相關字面前綴的模式不重疊；
+- 無法證明交集的模式在 `adaptive` 模式下是警告、在 `strict` 模式下是錯誤。
 
-This avoids pretending that a small standard-library glob checker can decide every possible pattern while still failing closed in strict parallel operation.
+這避免假裝小型標準函式庫的 glob 檢查器能判斷所有可能的模式，同時仍在嚴格並行操作中安全地失敗。

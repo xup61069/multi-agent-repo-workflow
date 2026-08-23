@@ -13,11 +13,12 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu-latest, windows-latest]
+        python: ["3.10", "3.11"]
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-python@v7
         with:
-          python-version: "3.11"
-      - name: Run behavioral tests
+          python-version: ${{ matrix.python }}
+      - name: 執行行為測試
         run: python -m unittest discover -s tests -v

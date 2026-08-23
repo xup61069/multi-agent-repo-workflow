@@ -1,40 +1,40 @@
 <!-- multi-agent-repo-workflow:start -->
-# {{PROJECT_NAME}} AI working agreement
+# {{PROJECT_NAME}} AI 協作規範
 
-Repository files are durable project truth. Chat history and model memory may help discovery but cannot override accepted specifications, source, tests, evidence, or an active handoff.
+儲存庫檔案是可長期保存的專案依據。聊天記錄和模型記憶可以協助找資料，但不能凌駕已接受的規格、原始碼、測試、證據或目前有效的交接。
 
-Read this file, `docs/ai/START_HERE.md`, and the active task context before editing.
+編輯前先閱讀本檔案、`docs/ai/START_HERE.md` 和目前任務的脈絡。
 
-## Policy tiers
+## 政策層級
 
-### Non-negotiable
+### 不可妥協
 
-- Preserve secrets, personal data, licenses, authorization boundaries, and truthful evidence claims.
-- Do not perform destructive, costly, external, privileged, or machine-changing actions unless the user explicitly authorized that action.
-- Stop on contradictory authoritative documents or overlapping active write ownership.
-- Add project-specific safety and compatibility invariants here only when a concrete failure justifies absolute language.
+- 保護機密、個人資料、授權、授權邊界和誠實的證據聲明。
+- 除非使用者明確授權，否則不執行具破壞性、高成本、涉及外部系統、需要提高權限，或會變更本機環境的操作。
+- 具優先效力的文件互相矛盾，或進行中的寫入責任重疊時，立即停止。
+- 只有當具體失敗足以支持絕對語言時，才在此加入專案特定的安全和相容性不變量。
 
-### Product and workflow defaults
+### 產品和工作流程預設值
 
-- Workflow mode: `{{WORKFLOW_MODE}}`. {{MODE_POLICY}}
-- Task tracker: `{{TASK_TRACKER}}`. Default integration branch: `{{DEFAULT_BRANCH}}`.
-- Product architecture, supported platforms, naming, and review conventions are changeable defaults. Record how maintainers can replace them instead of presenting them as permanent prohibitions.
-- Maintainer-facing updates lead with product outcome, user impact, verification, and remaining gaps. Put branch, commit, review, and CI details in a short trailing audit note only when useful.
+- 工作流程模式：`{{WORKFLOW_MODE}}`。{{MODE_POLICY}}
+- 任務追蹤器：`{{TASK_TRACKER}}`。預設整合分支：`{{DEFAULT_BRANCH}}`。
+- 產品架構、支援平台、命名和審查慣例是可變更的預設值。記錄維護者如何替換它們，而不是把它們呈現為永久禁止。
+- 提供給維護者的更新先說明產品結果、使用者影響、驗證和剩餘缺口。只有在必要時，才於結尾附上簡短的分支、commit、審查和 CI 稽核資訊。
 
-### Validation
+### 驗證
 
-- Run `git diff --check` for tracked edits.
-- Add the project's real always-run checks to `.agent-workflow/config.json`.
-- Add expensive build, integration, UI, hardware, packaging, and release checks only under the change scopes they actually validate.
-- A queued or running check is not a pass. A smoke test is evidence only for the layer and environment it exercised.
+- 對受追蹤編輯執行 `git diff --check`。
+- 把專案真實的必跑檢查加入 `.agent-workflow/config.json`。
+- 昂貴的建置、整合、UI、硬體、打包和發布檢查只加入它們實際驗證的變更範圍。
+- 排隊中或正在執行的檢查不算通過；`smoke test` 只能證明它實際測到的環境與層次。
 
-## Parallel ownership
+## 平行作業責任
 
-- Read-only reconnaissance does not require a claim.
-- One writer owns one independently verifiable outcome and one exclusive `scope_globs` set.
-- `shared_paths` require a named integrator or merge order; they do not authorize simultaneous edits.
-- Isolate the checkout whenever another writer is active, the branch is occupied, or ownership is uncertain. In strict mode, isolate every writer.
-- Before takeover, the previous owner records a reproducible checkpoint and stops writing; the next owner rereads remote state and the handoff.
+- 唯讀檢查不需要認領任務。
+- 每個寫入者負責一項可獨立驗證的成果，以及一組獨占的 `scope_globs`。
+- `shared_paths` 需要具名整合者或合併順序；它們不授權同時編輯。
+- 當另一個寫入者正在作業、分支已被使用或責任範圍不明時，使用隔離的 Git 檢出目錄。在 strict 模式下，每個寫入者都必須隔離。
+- 接管前，原負責人要記錄可重現的檢查點並停止寫入；下一位負責人則要重新讀取遠端狀態和交接內容。
 
-Detailed routing is in `docs/ai/MULTI_AGENT.md`.
+詳細路由請見 `docs/ai/MULTI_AGENT.md`。
 <!-- multi-agent-repo-workflow:end -->

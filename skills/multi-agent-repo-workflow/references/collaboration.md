@@ -1,84 +1,84 @@
-# Parallel collaboration
+# 平行協作
 
-Read this reference only when more than one writer may be active or the user asks for handoffs, task slicing, worktrees, or integration policy.
+只有在可能有多個寫入者同時作業，或使用者要求交接、任務切分、工作樹或整合政策時，才閱讀此參考文件。
 
-## Truth hierarchy
+## 真相層級
 
-A practical default is:
+實用的預設排序：
 
-1. accepted product specifications and architecture decisions;
-2. source, tests, and reproducible evidence;
-3. current integration or baseline status;
-4. the active task's handoff and scope;
-5. chat history and model memory.
+1. 被接受的產品規格和架構決定；
+2. 原始碼、測試和可重現證據；
+3. 目前整合或基準狀態；
+4. 進行中任務的交接和範圍；
+5. 聊天歷史和模型記憶。
 
-Lower levels must not silently override higher ones. Record a document conflict and stop the overlapping edit when two authoritative sources disagree.
+較低層級不得在未說明的情況下凌駕較高層級。當兩個具優先效力的來源互相矛盾時，記錄衝突並停止重疊編輯。
 
-## Roles
+## 角色
 
-- The maintainer sets product intent and authorizes material external or risky actions.
-- One orchestrator selects and assigns concurrent slices, dependencies, shared-path owners, and merge order.
-- A writer owns one independently verifiable outcome and its exclusive scope.
-- An integrator owns shared snapshots, registries, aggregate tests, and cross-slice reconciliation when those paths would otherwise collide.
-- A verifier independently checks a named result and stays read-only unless separately assigned a fix.
+- 維護者設定產品意圖，並授權實質的外部或有風險的操作。
+- 協調者選擇並指派並行工作切分、依賴關係、共用路徑負責人和合併順序。
+- 寫入者負責一項可獨立驗證的成果及其獨占範圍。
+- 整合者負責共用快照、註冊表、聚合測試，以及可能發生路徑衝突時的跨工作協調。
+- 驗證者獨立檢查一項明確成果，除非另行指派修正任務，否則保持唯讀。
 
-One person or agent may hold several roles when only one writer is active. Roles are about ownership, not headcount.
+只有一個寫入者作業時，同一個人或代理可以同時扮演多個角色。角色用來劃分責任，不是計算人數。
 
-## Task slice contract
+## 任務切分規範
 
-For strict concurrent work, each active writer needs:
+嚴格並行作業中，每個進行中的寫入者需要：
 
-- one named outcome with acceptance criteria;
-- one task or issue;
-- one non-default branch;
-- one isolated checkout when another writer, branch occupancy, or uncertainty exists;
-- one handoff block with owner, base, target, exclusive `scope_globs`, `shared_paths`, dependencies, validation, and one next safe action;
-- one review surface after the first reproducible work exists.
+- 一項附有驗收條件的明確成果；
+- 一個任務或 issue；
+- 一個非預設分支；
+- 當另一個寫入者正在作業、分支已被使用或責任不明時，一個隔離的 Git 檢出目錄；
+- 一個包含負責人、基準、目標分支、獨占 `scope_globs`、`shared_paths`、依賴、驗證和一項下一步安全操作的交接區塊；
+- 第一個可重現的檢查點完成後，一份可供審查的變更。
 
-In adaptive mode, create this machinery only when concurrency appears. Read-only reconnaissance does not need a claim. A direct maintainer assignment is sufficient authority to materialize a task after checking overlap.
+adaptive 模式下，只在出現並行作業時才建立這些機制。唯讀檢查不需要認領任務。確認沒有重疊後，維護者直接指派即可建立任務。
 
-## Scope
+## 範圍
 
-`scope_globs` announce exclusive write intent. They should be narrow enough to make overlap meaningful and broad enough to include the tests and documentation the outcome must change.
+`scope_globs` 用來表達獨占寫入範圍。範圍要窄到能有效判斷重疊，也要廣到涵蓋成果所需的測試和文件。
 
-`shared_paths` announce files that need a named integrator or ordered edits. Listing a shared path does not make concurrent writes safe.
+`shared_paths` 列出需要指定整合者或排定編輯順序的檔案。列入共用路徑不代表可以安全地同時寫入。
 
-`depends_on` records a real contract or merge dependency. Prefer merging a shared contract first, then starting dependent work from the new base. Use stacked work only when waiting would be worse and the dependency is explicit.
+`depends_on` 記錄真實的合約或合併依賴。偏好先合併共用合約，再從新基準開始依賴工作。只有等待會更糟且依賴明確時才使用堆疊式工作。
 
-Directory lanes are routing hints, not universal locks. Two tasks in one directory can run safely when their files and semantic contracts do not overlap. Two tasks in different directories can still conflict when they change the same public behavior.
+目錄分工只是路由提示，不是通用鎖。若檔案和語意合約不重疊，同一目錄中的兩個任務仍可安全執行；不同目錄中的兩個任務，也可能因為改變相同的公開行為而衝突。
 
-## Workspace isolation
+## 工作區隔離
 
-- `solo`: a separate worktree is optional.
-- `adaptive`: require isolation when another writer is active, the branch is already attached elsewhere, or occupancy cannot be proven.
-- `strict`: use a separate clone or worktree for every writer.
+- `solo`：獨立工作樹是選用。
+- `adaptive`：當另一個寫入者正在作業、分支已掛載到其他工作區，或無法確認使用狀態時要求隔離。
+- `strict`：每個寫入者使用獨立的 clone 或工作樹。
 
-Never enter, clean, reset, rebase, build, or commit another active writer's workspace. A shared Git identity does not imply shared ownership.
+絕不進入、清理、重置、rebase、建置或 commit 另一個正在作業之寫入者的工作區。共用 Git 身分不代表責任範圍也共用。
 
-## Handoff and takeover
+## 交接與接管
 
-Before handing off, the current writer records a reproducible checkpoint, pushes it when external Git use is authorized, updates validation and limitations, names one next safe action, and stops writing. The next writer rereads remote state and the handoff before editing.
+交出前，目前的寫入者記錄可重現的檢查點，在外部 Git 使用被授權時推送到遠端，更新驗證和限制，命名一個下一安全操作，然後停止寫入。下一個寫入者在編輯前重新閱讀遠端狀態和交接內容。
 
-If a different session already completed the slice, accept the current remote result, validate it independently, and record the takeover. Do not resurrect stale uncommitted work merely because it existed first.
+如果不同的 session 已完成該切片，接受目前的遠端結果，獨立驗證它，並記錄接管。不要僅僅因為過期的未提交工作先存在就復活它。
 
-## Conflict stop conditions
+## 衝突停止條件
 
-Stop overlapping writes when:
+以下情況停止重疊寫入：
 
-- two active claims overlap in files or public contract meaning;
-- a change expands outside its assigned scope;
-- a shared path has no single owner or merge order;
-- branch, base, handoff, or remote head differs from the recorded state;
-- authoritative documents contradict one another.
+- 兩個有效的任務認領在檔案或公開合約上有實質重疊；
+- 變更超出被指派的範圍；
+- 共用路徑沒有單一負責人或合併順序；
+- 分支、基準、交接或遠端 HEAD 與記錄的狀態不同；
+- 具優先效力的文件互相矛盾。
 
-Report the conflicting tasks, paths or contracts, observed state, and smallest decision needed. Do not solve ownership conflicts by force-pushing or copying another writer's working tree.
+報告衝突的任務、路徑或合約、觀察到的狀態，以及繼續作業所需的最小決定。不要用 force push 或複製另一個寫入者的工作樹來解決責任衝突。
 
-## Maintainer reports
+## 維護者報告
 
-The workflow exists to protect development, not dominate the conversation. Report in this order:
+工作流程存在的目的是保護開發，而不是主導對話。以此順序報告：
 
-1. what capability is being built or fixed;
-2. what the user will notice;
-3. what was actually verified;
-4. what remains or needs a decision;
-5. a short branch, review, or CI note only when it changes trust or next action.
+1. 正在建構或修復什麼能力；
+2. 使用者會注意到什麼；
+3. 實際上驗證了什麼；
+4. 剩餘什麼或需要決定；
+5. 只有在影響信任或下一步時，簡短提及分支、審查或 CI。

@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "Multi-agent repository workflow configuration",
+  "title": "多代理儲存庫工作流程設定",
   "type": "object",
   "additionalProperties": false,
   "required": [
@@ -27,12 +27,17 @@
     "active_statuses": {
       "type": "array",
       "items": {"enum": ["claimed", "in_review"]},
+      "minItems": 1,
       "uniqueItems": true
     },
     "reporting_order": {
-      "type": "array",
-      "items": {"type": "string", "minLength": 1},
-      "minItems": 5
+      "const": [
+        "product_outcome",
+        "user_impact",
+        "verification",
+        "remaining_gaps",
+        "development_audit_when_relevant"
+      ]
     },
     "validation": {
       "type": "object",
@@ -43,6 +48,10 @@
         "conditional_gates": {"type": "array", "items": {"type": "object"}}
       }
     },
-    "shared_integration_paths": {"type": "array", "items": {"type": "string", "minLength": 1}}
+    "shared_integration_paths": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1},
+      "uniqueItems": true
+    }
   }
 }

@@ -1,4 +1,4 @@
 interface:
-  display_name: "Multi-Agent Repo Workflow"
-  short_description: "Bootstrap safe multi-agent repository workflows"
-  default_prompt: "Use $multi-agent-repo-workflow to set up an adaptive, repository-backed collaboration workflow for this project."
+  display_name: "多代理儲存庫工作流程"
+  short_description: "安裝安全的多代理儲存庫協作工作流程"
+  default_prompt: "使用 $multi-agent-repo-workflow 為這個專案設定 adaptive、基於儲存庫的協作工作流程。"

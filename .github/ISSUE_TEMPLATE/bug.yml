@@ -1,32 +1,32 @@
-name: Bug report
-description: Report a reproducible problem in a script, template, or Skill decision.
-title: "[Bug] "
+name: 錯誤回報
+description: 回報腳本、模板或 Skill 決策中可重現的問題。
+title: "[錯誤] "
 labels: [bug]
 body:
   - type: textarea
     id: behavior
     attributes:
-      label: Observed behavior
-      description: Include the command or request, output, and affected files.
+      label: 觀察到的行為
+      description: 請附上指令或請求、輸出結果，以及受影響的檔案。
     validations:
       required: true
   - type: textarea
     id: expected
     attributes:
-      label: Expected behavior
+      label: 預期行為
     validations:
       required: true
   - type: textarea
     id: environment
     attributes:
-      label: Environment
-      description: OS, Python version, Codex surface if relevant, and repository mode.
+      label: 環境資訊
+      description: 作業系統、Python 版本、Codex 介面（如相關），以及儲存庫模式。
     validations:
       required: true
   - type: checkboxes
     id: safety
     attributes:
-      label: Safety
+      label: 安全性
       options:
-        - label: This report contains no secret, private repository content, or personal data.
+        - label: 此回報不包含任何機密、私有儲存庫內容或個人資料。
           required: true

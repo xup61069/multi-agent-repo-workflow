@@ -1,37 +1,37 @@
 ---
 name: multi-agent-repo-workflow
-description: Bootstrap, audit, or simplify repository-backed multi-agent coding workflows. Use when a project needs durable AI instructions, scoped parallel ownership, handoffs, validation gates, or reusable agent roles; do not use for ordinary feature implementation.
+description: 建立、稽核或簡化由儲存庫文件支援的多代理開發流程。當專案需要可長期保存的 AI 指令、平行作業責任範圍、任務交接、驗證關卡或可重複使用的代理角色時使用；一般功能開發不適用。
 ---
 
-# Multi-Agent Repo Workflow
+# 多代理儲存庫工作流程
 
-Build the lightest collaboration system that prevents the project's actual failure modes.
+建立最輕量的協作系統，以防止專案的實際失敗模式。
 
-## Choose a mode
+## 選擇模式
 
-- Use `solo` when one writer is active and overlap is not plausible. Keep durable instructions and scoped validation; skip claim ceremony.
-- Use `adaptive` by default. Escalate to explicit claims and isolated workspaces only when another writer is active, a branch is occupied, or ownership is uncertain.
-- Use `strict` when concurrent writers are expected. Require one independently verifiable task, branch, workspace, handoff, exclusive scope, and review surface per writer.
+- 只有一個寫入者且不可能重疊時使用 `solo`。保留可長期保存的指令，並依變更範圍執行驗證；不需要額外的任務認領流程。
+- 預設使用 `adaptive`。只有當另一個寫入者正在作業、分支已被使用或責任範圍不明時，才要求明確認領任務並隔離工作區。
+- 預期多個寫入者同時作業時使用 `strict`。每個寫入者都需要一個可獨立驗證的任務、分支、工作區、交接、獨占範圍，以及可供審查的變更。
 
-Do not infer that a more restrictive mode is better. A rule belongs in the workflow only when it prevents a concrete safety, correctness, privacy, licensing, release, or coordination failure.
+不要推論更嚴格的模式更好。一條規則只有在它能防止具體的安全、正確性、隱私、授權、發布或協調失敗時，才屬於這個工作流程。
 
-## Workflow
+## 工作流程
 
-1. Inspect the repository before proposing files: current instructions, Git state, active work, CI, build/test commands, architecture records, sensitive paths, and the maintainer's reporting preferences.
-2. Read [policy-model.md](references/policy-model.md) when defining or simplifying constraints. Separate non-negotiable invariants, changeable product defaults, and scope-triggered validation.
-3. Read [collaboration.md](references/collaboration.md) when parallel writers, worktrees, task claims, integration ownership, takeovers, or conflicts are in scope.
-4. Read [adoption.md](references/adoption.md) before changing an existing repository or selecting `solo`, `adaptive`, or `strict`.
-5. Preview generation with `scripts/bootstrap.py ... --dry-run`. Preserve existing instructions; use `--merge-agents` only when appending the marked block is appropriate. Never use `--force` without reviewing every destination that will be replaced.
-6. Replace generic examples with the repository's real authority order, safe actions, validation commands, shared integration paths, and evidence boundaries.
-7. Run `scripts/validate_setup.py`. When handoffs are used, read [handoff-format.md](references/handoff-format.md) and run `scripts/handoff_check.py` against fixtures or live read-only issue data.
-8. Run the adopting repository's relevant checks. Do not claim a queued check passed or let a smoke test stand in for a different environment or product layer.
+1. 提出檔案前先檢查儲存庫：現有指令、Git 狀態、進行中的工作、CI、建置／測試指令、架構文件、敏感路徑和維護者的報告偏好。
+2. 定義或簡化限制時閱讀 [policy-model.md](references/policy-model.md)。區分不可妥協的不變量、可變更的產品預設值和範圍觸發的驗證。
+3. 任務涉及平行寫入、工作樹、任務認領、整合責任、接管或衝突時，閱讀 [collaboration.md](references/collaboration.md)。
+4. 修改現有儲存庫或選擇 `solo`/`adaptive`/`strict` 前，閱讀 [adoption.md](references/adoption.md)。
+5. 用 `scripts/bootstrap.py ... --dry-run` 預覽產生結果；需要檢查完整內容時加上 `--show-content`。保留現有指令，只有在適合附加受管理區塊時才使用 `--merge-agents`。沒有逐一檢視所有將被替換的檔案之前，絕不使用 `--force`。
+6. 把通用範例替換為儲存庫實際採用的依據優先順序、安全操作、驗證命令、共用整合路徑和證據邊界。
+7. 執行 `scripts/validate_setup.py`。使用交接時，閱讀 [handoff-format.md](references/handoff-format.md) 並對測試資料或唯讀 issue 資料執行 `scripts/handoff_check.py`。
+8. 執行採用儲存庫的相關檢查。不要宣稱排隊中的檢查已通過；`smoke test` 只能證明它實際測到的環境與層次。
 
-Use [goal-prompts.md](references/goal-prompts.md) only when the user wants ready-to-paste agent window or long-running Goal prompts.
+使用者想要可直接貼上的代理視窗或長期目標提示時，才使用 [goal-prompts.md](references/goal-prompts.md)。
 
-## Boundaries
+## 邊界
 
-- Repository inspection and dry runs are read-only. Do not create repositories, issues, branches, worktrees, pull requests, or external messages unless the user requested those writes.
-- Never copy product-specific legal, hardware, signing, privacy, platform, or release constraints into another project without evidence that they apply.
-- Treat `scope_globs` as exclusive write intent and `shared_paths` as coordination signals, not permission for concurrent edits.
-- Keep user-facing updates outcome-first: product change, user impact, verification, remaining gaps, then a short Git audit tail only when useful.
-- Stop for overlapping claims, contradictory authoritative documents, destructive or costly actions, missing external authority, or a material expansion of scope.
+- 儲存庫檢查和預演都是唯讀操作。除非使用者明確要求，否則不要建立儲存庫、issue、分支、工作樹、pull request 或外部訊息。
+- 沒有證據表明適用時，絕不把產品特定的法律、硬體、簽署、隱私、平台或發布限制複製到另一個專案。
+- 將 `scope_globs` 視為獨占寫入意圖，`shared_paths` 視為協調信號，而不是同時編輯的許可。
+- 給使用者的更新先說明產品變更、使用者影響、驗證和剩餘缺口；只有在必要時才附上簡短的 Git 稽核資訊。
+- 發現任務認領重疊、具優先效力的文件互相矛盾、操作具破壞性或成本、缺少外部授權，或範圍實質擴大時停止。

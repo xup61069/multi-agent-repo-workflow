@@ -1,18 +1,18 @@
-# Contributing
+# 貢獻指南
 
-Contributions should make the workflow safer, clearer, or easier to adopt without turning one project's preference into a universal restriction.
+貢獻應讓工作流程更安全、更清楚或更容易採用，而不是把某個專案的偏好變成通用限制。
 
-## Before changing behavior
+## 修改行為之前
 
-1. Describe the concrete failure or adoption problem.
-2. Decide whether the fix belongs in the Skill, a conditional reference, a generated template, or a deterministic script.
-3. Preserve existing repositories by default; new automation must preview conflicts before writing.
-4. Add or update a behavioral test.
+1. 描述具體的失敗案例或採用障礙。
+2. 判斷修正屬於 Skill、條件式參考、產生的模板，還是確定性腳本。
+3. 預設保護現有的儲存庫；新的自動化必須在寫入前預覽衝突。
+4. 新增或更新行為測試。
 
-Run:
+執行：
 
 ```shell
 python -m unittest discover -s tests -v
 ```
 
-Pull requests should explain the user-visible workflow change, the risk it addresses, how it was verified, and any remaining limitation. Git history details do not need to lead the explanation.
+Pull request 應說明使用者可見的工作流程改變、解決的風險、如何驗證，以及剩餘的限制。Git 歷史細節不需要作為說明的開頭。

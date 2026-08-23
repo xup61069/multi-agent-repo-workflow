@@ -1,5 +1,5 @@
 blank_issues_enabled: false
 contact_links:
-  - name: Private security report
+  - name: 私人安全回報
     url: https://github.com/xup61069/multi-agent-repo-workflow/security/advisories/new
-    about: Report path traversal, command execution, credential, or other security issues privately.
+    about: 請私下回報路徑穿越、命令執行、憑證或其他安全問題。

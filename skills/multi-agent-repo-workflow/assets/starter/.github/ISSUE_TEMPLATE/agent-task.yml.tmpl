@@ -1,19 +1,19 @@
-name: Agent task slice
-description: Define one independently verifiable work slice for assignment.
-title: "[Agent Task] "
+name: 代理任務切片
+description: 定義一個獨立可驗證的工作切片供指派。
+title: "[代理任務] "
 body:
   - type: textarea
     id: outcome
     attributes:
-      label: Outcome and acceptance
-      description: Describe the product result and how it will be verified.
+      label: 結果與驗收
+      description: 描述產品結果及其驗證方式。
     validations:
       required: true
   - type: textarea
     id: handoff
     attributes:
-      label: Machine-readable handoff
-      description: Replace the placeholders when one owner claims the task.
+      label: 機器可讀交接
+      description: 一位擁有者宣告任務時替換佔位符。
       render: markdown
       value: |
         <!-- agent-workflow:handoff-v1
@@ -21,7 +21,7 @@ body:
           "schema_version": 1,
           "issue": 0,
           "branch": "agent/0-short-slug",
-          "target_branch": "{{DEFAULT_BRANCH}}",
+          "target_branch": "{{DEFAULT_BRANCH_JSON}}",
           "base_commit": "replace-with-full-commit",
           "owner": "unassigned",
           "role": "writer",
@@ -30,7 +30,7 @@ body:
           "shared_paths": [],
           "depends_on": [],
           "validation": ["replace with a real project command"],
-          "next_safe_action": "Assign one owner, confirm no overlap, and choose workspace isolation."
+          "next_safe_action": "指派一位擁有者、確認無重疊，並選擇工作區隔離方式。"
         }
         -->
     validations:
@@ -38,11 +38,11 @@ body:
   - type: checkboxes
     id: checks
     attributes:
-      label: Assignment checks
+      label: 指派檢查
       options:
-        - label: Active tasks and semantic contract ownership were checked for overlap.
+        - label: 已檢查活躍任務和語義合約擁有權的重疊。
           required: true
-        - label: Shared paths have one integrator or an explicit merge order.
+        - label: 共用路徑有一位整合者或明確的合併順序。
           required: true
-        - label: The validation plan proves this outcome without overstating its environment or layer.
+        - label: 驗證計畫在不誇大環境或層面的前提下證明此結果。
           required: true

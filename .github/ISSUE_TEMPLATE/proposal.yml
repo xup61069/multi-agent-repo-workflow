@@ -1,26 +1,26 @@
-name: Workflow proposal
-description: Propose a reusable improvement backed by a concrete coordination failure.
-title: "[Proposal] "
+name: 工作流程提案
+description: 基於具體的協作失敗案例，提出可重複使用的改進。
+title: "[提案] "
 labels: [enhancement]
 body:
   - type: textarea
     id: failure
     attributes:
-      label: Failure or adoption problem
-      description: What happened, and why existing behavior was insufficient.
+      label: 失敗或採用問題
+      description: 發生了什麼事？現有行為為什麼不夠用？
     validations:
       required: true
   - type: textarea
     id: scope
     attributes:
-      label: Proposed change and boundary
-      description: Explain which mode, template, reference, or script should change and what should remain optional.
+      label: 提案變更與邊界
+      description: 說明哪個模式、模板、參考文件或腳本需要修改，以及哪些應保持選用。
     validations:
       required: true
   - type: textarea
     id: evidence
     attributes:
-      label: Verification
-      description: Describe a behavioral test or observable result.
+      label: 驗證方式
+      description: 描述行為測試或可觀察結果。
     validations:
       required: true

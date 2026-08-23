@@ -1,27 +1,27 @@
-# Reusable Goal prompts
+# 可重複使用的目標提示
 
-Replace bracketed text with a named milestone. A long-running Goal is not an unlimited backlog: it still needs one outcome, a validation loop, and a stopping or pause condition.
+把括號內的文字替換為指定里程碑。長期目標不是無限待辦清單，仍然需要一項明確成果、一個驗證迴圈，以及停止或暫停條件。
 
-## Long-running integrator
+## 長期整合者
 
 ```text
-/goal Move [project] to its accepted release criteria. Read the repository instructions, current baseline, and active handoffs first. Maintain a verifiable gap list and advance one non-overlapping milestone at a time; coordinate specialists and only implement work whose write scope is explicitly assigned to this window. Report product change, user impact, verification, and remaining gaps before any Git audit details. Continue until every accepted criterion passes, or pause for a maintainer decision, external account or cost, hardware or machine-changing action, ownership conflict, or genuine blocker.
+/goal 把 [專案] 推進到已接受的發布標準。先閱讀儲存庫指令、目前基準和有效的交接。維護一份可驗證的缺口清單，每次推進一個不重疊的里程碑；協調專家，只實作明確指派給這個視窗的工作。先報告產品變更、使用者影響、驗證和剩餘缺口，再補充 Git 稽核資訊。持續到所有驗收條件通過；若需要維護者決定、外部帳號或費用、硬體或本機環境變更、責任衝突，或遇到真正的阻礙，則暫停。
 ```
 
-## Assigned specialist
+## 指派專家
 
 ```text
-/goal Complete the named milestone [milestone] within its assigned write scope. Read the repository rules, handoff, relevant specification, source, tests, and evidence before editing. Do not expand into another writer's files or public contract. Verify the milestone with the project's relevant checks and explain the result in plain product language before a short development record. Stop when acceptance passes or when a product decision, scope expansion, external authority, or unsafe action is required.
+/goal 在指派的寫入範圍內完成 [指定里程碑]。編輯前先閱讀儲存庫規則、交接、相關規格、原始碼、測試和證據。不要擴張到其他寫入者的檔案或公開合約。使用專案的相關檢查驗證里程碑，先用產品語言說明結果，再附上簡短的開發記錄。驗收通過後停止；若需要產品決定、擴大範圍、外部授權或不安全操作，也要停止並回報。
 ```
 
-## Independent verifier
+## 獨立驗證者
 
 ```text
-/goal Independently determine whether [milestone] on the current integration branch really satisfies its accepted user outcome. Stay read-only by default, reproduce the behavior, run relevant checks, distinguish simulated evidence from target-environment evidence, and deliver a pass or fail conclusion with user impact and the smallest next action. Do not take over the fix unless the maintainer separately assigns it.
+/goal 獨立判斷目前整合分支上的 [里程碑] 是否確實達成已接受的使用者成果。預設保持唯讀，重現行為、執行相關檢查，並區分模擬證據與目標環境證據。回報通過或失敗結論、使用者影響，以及最小的下一步操作。除非維護者另行指派，否則不要接管修正工作。
 ```
 
-## Workflow maintainer
+## 工作流程維護者
 
 ```text
-/goal Audit this repository's AI instructions and collaboration workflow for contradictions, unnecessary ceremony, stale commands, missing ownership boundaries, and unverifiable claims. Preserve concrete safety, legal, privacy, compatibility, and evidence invariants; simplify defaults and gates that do not match current risk. Validate every changed instruction and stop after delivering a coherent, repository-backed workflow with documented remaining decisions.
+/goal 稽核此儲存庫的 AI 指令和協作工作流程中的矛盾、不必要的繁文縟節、過期命令、缺少的擁有權邊界和不可驗證的聲明。保留具體的安全、法律、隱私、相容性和證據不變量；簡化不符合當前風險的預設值和關卡。驗證每個修改過的指令，交付一致的基於儲存庫的工作流程後，記錄剩餘待決事項即停止。
 ```

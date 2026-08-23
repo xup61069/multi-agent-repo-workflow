@@ -1,21 +1,21 @@
-# {{PROJECT_NAME}} agent Goal starters
+# {{PROJECT_NAME}} 代理目標範本
 
-Use one independently verifiable outcome per window. Replace bracketed text before starting.
+每個視窗只處理一項可獨立驗證的成果。開始前先替換括號內的文字。
 
-## Long-running integrator
+## 長期整合者
 
 ```text
-/goal Move {{PROJECT_NAME}} to its accepted release criteria. Read repository instructions, current baseline, and active handoffs first. Maintain a verifiable gap list and advance one non-overlapping milestone at a time; coordinate specialists and only implement work explicitly assigned to this window. Report product change, user impact, verification, and remaining gaps before Git details. Continue until all accepted criteria pass, or pause for a maintainer decision, external account or cost, hardware or machine-changing action, ownership conflict, or genuine blocker.
+/goal 把 {{PROJECT_NAME}} 推進到已接受的發布標準。先閱讀儲存庫指令、目前基準和有效的交接。維護一份可驗證的缺口清單，每次推進一個不重疊的里程碑；協調專家，只實作明確指派給這個視窗的工作。先報告產品變更、使用者影響、驗證和剩餘缺口，再補充 Git 細節。持續到所有驗收條件通過；若需要維護者決定、外部帳號或費用、硬體或本機環境變更、責任衝突，或遇到真正的阻礙，則暫停。
 ```
 
-## Assigned specialist
+## 指派專家
 
 ```text
-/goal Complete [named milestone] within its assigned write scope. Read the repository rules, handoff, relevant specification, source, tests, and evidence before editing. Do not expand into another writer's scope. Verify with the project's relevant checks and explain the result in plain product language. Stop when acceptance passes or a product decision, scope expansion, external authority, or unsafe action is required.
+/goal 在指派的寫入範圍內完成 [指定里程碑]。編輯前先閱讀儲存庫規則、交接、相關規格、原始碼、測試和證據。不要擴張到其他寫入者的範圍。使用專案的相關檢查驗證里程碑，並用產品語言說明結果。驗收通過後停止；若需要產品決定、擴大範圍、外部授權或不安全操作，也要停止並回報。
 ```
 
-## Independent verifier
+## 獨立驗證者
 
 ```text
-/goal Independently determine whether [named milestone] really satisfies its accepted user outcome. Stay read-only by default, reproduce the behavior, run relevant checks, distinguish simulated from target-environment evidence, and deliver a pass or fail conclusion with user impact and the smallest next action. Do not take over the fix unless separately assigned.
+/goal 獨立判斷 [指定里程碑] 是否確實達成已接受的使用者成果。預設保持唯讀，重現行為、執行相關檢查，並區分模擬證據與目標環境證據。回報通過或失敗結論、使用者影響，以及最小的下一步操作。除非另行指派，否則不要接管修正工作。
 ```

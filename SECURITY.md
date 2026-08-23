@@ -1,7 +1,7 @@
-# Security policy
+# 安全政策
 
-Please report vulnerabilities privately through GitHub's security advisory interface instead of a public issue.
+請透過 GitHub 的私人安全建議介面回報漏洞，不要使用公開 issue。
 
-The toolkit processes repository paths, Git output, local task files, and optional GitHub issue bodies. Reports should identify the affected script, the untrusted input, the resulting filesystem or command behavior, and a minimal reproduction.
+此工具組處理儲存庫路徑、Git 輸出、本地任務檔案和選用的 GitHub issue 內容。報告應指出受影響的腳本、不可信的輸入來源、導致的檔案系統或命令行為，以及最小的重現步驟。
 
-The scripts must not execute commands sourced from configuration or issue bodies. A handoff's validation list is data for the assigned agent; `handoff_check.py` validates it but never executes it.
+腳本不得執行來自設定檔或 issue 內容的命令。交接中的驗證清單是指派給代理的資料；`handoff_check.py` 只驗證它但永遠不會執行它。

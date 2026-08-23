@@ -1,38 +1,38 @@
-# Adoption guide
+# 採用指南
 
-## Existing repository
+## 現有儲存庫
 
-1. Inspect current `AGENTS.md`, contributor docs, CI, test commands, architecture records, active branches, and uncommitted work.
-2. Preserve existing instructions. Use the bootstrapper's `--merge-agents` only after reviewing the marked block it will append.
-3. Start in `solo` or `adaptive` unless simultaneous writers already exist.
-4. Replace generated examples with real project commands. Do not invent gates or product claims.
-5. Identify high-conflict registries, lockfiles, aggregate tests, release files, and global snapshots; name an integrator only for those paths.
-6. Validate locally before enabling repository branch rules or required checks.
+1. 檢查現有的 `AGENTS.md`、貢獻者文件、CI、測試指令、架構文件、正在使用的分支和未提交工作。
+2. 保護現有指令。只有在檢視過安裝腳本將附加的標記區塊後才使用 `--merge-agents`。
+3. 除非已有同時寫入者，從 `solo` 或 `adaptive` 開始。
+4. 把產生的範例替換為專案的真實指令。不要發明不存在的關卡或產品聲明。
+5. 找出高衝突的註冊表、鎖定檔、聚合測試、發布檔案和全域快照；只為那些路徑指定整合者。
+6. 在啟用儲存庫分支規則或必要檢查之前，先在本地驗證。
 
-If existing instructions and the proposed workflow disagree, stop and present the smallest policy decision. Do not overwrite the existing file with `--force` merely to make validation pass.
+如果現有指令和提議的工作流程矛盾，停下來提出最小的政策決定。不要為了讓驗證通過就用 `--force` 覆寫現有檔案。
 
-## New repository
+## 新儲存庫
 
-Generate the starter in `adaptive` mode, write the first accepted product specification, and keep the always-run gate minimal. Add strict task claims only when a second writer starts.
+以 `adaptive` 模式產生起始設定，撰寫第一份已接受的產品規格，並讓必跑關卡保持精簡。只有當第二個寫入者出現時，才加入嚴格的任務認領流程。
 
-## Mode changes
+## 模式切換
 
-### Solo to adaptive
+### Solo 到 adaptive
 
-Add a task tracker or handoff location, exclusive scopes, and an isolation decision. Existing solo work does not need retroactive issues.
+新增任務追蹤器或交接位置、獨占範圍和隔離決策。現有的 solo 工作不需要追溯建立 issue。
 
-### Adaptive to strict
+### Adaptive 到 strict
 
-Before starting another writer, materialize every active write slice, assign owners, check scope and semantic overlap, choose shared-path owners, and create isolated workspaces. Do not infer ownership from a common account.
+開始另一個寫入者之前，先記錄每個進行中工作切分、指派負責人、檢查範圍和語意是否重疊、指定共用路徑的整合者，並建立隔離工作區。不要因為共用帳號就推定責任歸屬。
 
-### Strict to adaptive or solo
+### Strict 到 adaptive 或 solo
 
-Finish or close active claims, preserve useful evidence, then remove ceremony that no longer prevents a live risk. Do not delete historical decisions or evidence merely because concurrency ended.
+完成或關閉目前的任務認領、保留有用的證據，再移除已無法降低現行風險的流程。不要因為並行作業結束就刪除歷史決定或證據。
 
-## GitHub integration
+## GitHub 整合
 
-The starter issue form stores a JSON handoff block in the issue body. Suggested labels are `claimed` and `in-review`; closed means done. A draft pull request begins after the first reproducible checkpoint, not before the edits required to create it.
+起始的 issue 表單在 issue 內容中儲存 JSON 交接區塊。建議標籤是 `claimed` 和 `in-review`；關閉表示完成。第一個可重現的檢查點之後才開始草稿 pull request，而不是在建立它所需的編輯之前。
 
-Branch protection and required CI are repository settings. Documentation may recommend them but must not claim they are enabled without reading the live setting.
+分支保護和必要 CI 是儲存庫設定。文件可以建議它們但不得在沒有讀取即時設定的情況下宣稱已啟用。
 
-All scripts in this skill are read-only with respect to GitHub. Repository, issue, label, branch, pull-request, and settings changes require a separate explicit user request.
+此 Skill 中所有腳本對 GitHub 是唯讀的。儲存庫、issue、標籤、分支、pull request 和設定變更需要使用者另行明確要求。
